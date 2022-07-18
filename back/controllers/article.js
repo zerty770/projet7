@@ -89,7 +89,7 @@ exports.modifyArticle = (req, res, next) => {
 /**
  * Suppression d'une article
  */
-exports.deletearticle = (req, res, next) => {
+exports.deleteArticle = (req, res, next) => {
   
     Article.findOne({ _id: req.params.id })
         .then((article) => {
@@ -122,12 +122,12 @@ exports.likeDislikeArticle = (req, res, next) => {
         if (likeDislike === 1) { // Si article like = 1
             article.likes++
             // sauvegarde utilisateurId 
-            article.utilisateurutilisateursLiked.push(req.body.utilisateurutilisateurId);
+            article.utilisateurLiked.push(req.body.utilisateurId);
             // MAJ de la article 
             Article.updateOne({ _id: req.params.id },
                 {
                     likes: article.likes,
-                    utilisateurutilisateursLiked: article.utilisateurutilisateursLiked,
+                    utilisateurLiked: article.utilisateurLiked,
                     _id: req.params.id,
                 })
                 .then(() => res.status(200).json({ message: "Tu likes ce produit !" }))
@@ -135,8 +135,8 @@ exports.likeDislikeArticle = (req, res, next) => {
            
         } else if (likeDislike === 0) { // verification et remise a zero article like et dislike
         
-            // si utilisateurutilisateurId est dans utilisateurutilisateursLiked = utilisateurutilisateur like
-            if (article.utilisateurutilisateursLiked.includes(req.body.utilisateurutilisateurId)){
+            // si utilisateurId est dans utilisateursLiked = utilisateur like
+            if (article.utilisateursLiked.includes(req.body.utilisateurId)){
                 article.likes--
 
                 // utilisateurId est retirer du tableau
@@ -147,7 +147,7 @@ exports.likeDislikeArticle = (req, res, next) => {
                 Article.updateOne({ _id: req.params.id },
                     {
                         likes: article.likes,
-                        utilisateursLiked: article.usarticleersLiked,
+                        utilisateursLiked: article.utilisateursLiked,
                         _id: req.params.id,
                     })
                     .then(() =>res.status(200).json({ message: "Tu ne like plus ce produit !" }))
