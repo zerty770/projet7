@@ -13,7 +13,7 @@ const routes = [
 
   
   {
-    path: '/',
+    path: '/log',
     name: 'gerant',
     component: gerant.gerantLayout,
     children:[
@@ -28,10 +28,10 @@ const routes = [
     ]
   },
   {
-    path : '/login', name: 'Login', component: Login
+    path : '/', name: 'Login', component: Login
   },
   {
-    path:'/:pathMatch(.*)*', redirect: '/'
+    path:'/:pathMatch(.*)*', redirect: '/home'
   }
 
 ]

@@ -38,7 +38,7 @@ exports.createArticle = (req, res, next) => {
 /**
  * Récupération d'un article
  */
-exports.getOneSaArticleuce = (req, res, next) => {
+exports.getOneArticle = (req, res, next) => {
     // Recup article avec id
     Article.findOne({_id: req.params.id})
         .then((article) => {

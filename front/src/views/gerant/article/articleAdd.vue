@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { articleService } from '@/_service'
+import { articleService } from '@/_services'
 export default {
     name: 'articleAdd',
     data(){

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { utilisateurService } from '@/_service'
+import { utilisateurService } from '@/_services'
 export default {
     name: 'UtilisateurutilisateurAdd',
     data(){
